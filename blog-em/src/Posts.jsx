@@ -15,7 +15,7 @@ export function Posts() {
 	const [selectedPost, setSelectedPost] = useState(null);
 
 	const queryClient = useQueryClient();
-
+	// Prefetch data
 	useEffect(() => {
 		if (currentPage < maxPostPage) {
 			queryClient.prefetchQuery(["posts", currentPage + 1], () =>
