@@ -10,7 +10,15 @@ const fetchUrl = async (url) => {
 
 export function InfinitePeople() {
 	// TODO: get data for InfiniteScroll via React Query
-	const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery(
+	const {
+		data,
+		fetchNextPage,
+		hasNextPage,
+		isFetching,
+		isLoading,
+		isError,
+		error,
+	} = useInfiniteQuery(
 		"sw-people",
 		({ pageParam = initialUrl }) => fetchUrl(pageParam),
 		{
@@ -18,9 +26,13 @@ export function InfinitePeople() {
 		}
 	);
 
+	if (isLoading) return <div className='Loading'>Loading...</div>;
+
+	if (isError) return <div className='Error'>Error! {error.toString()} </div>;
+
 	return (
 		<InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
-			{data?.pages.map((page, i) => (
+			{data.pages.map((page, i) => (
 				<div key={i}>
 					{page.results.map((person) => (
 						<Person
@@ -32,6 +44,7 @@ export function InfinitePeople() {
 					))}
 				</div>
 			))}
+			{isFetching && <div className='Loading'>Loading...</div>}
 		</InfiniteScroll>
 	);
 }
