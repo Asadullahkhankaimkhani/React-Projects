@@ -13,10 +13,7 @@ import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti';
 
 import { UserAppointments } from '../user/UserAppointments';
 import { DateBox } from './DateBox';
-import {
-  useAppointments,
-  usePrefetchAppointments,
-} from './hooks/useAppointments';
+import { useAppointments } from './hooks/useAppointments';
 
 export function Calendar(): ReactElement {
   const currentDate = dayjs();
