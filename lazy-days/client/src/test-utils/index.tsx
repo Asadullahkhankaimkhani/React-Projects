@@ -1,12 +1,25 @@
 import { render, RenderResult } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider, setLogger } from 'react-query';
+import { generateQueryClientConfig } from 'react-query/queryClient';
 
 // import { defaultQueryClientOptions } from '../react-query/queryClient';
+
+setLogger({
+    log: console.log,
+    warn: console.warn,
+    error: () => {},
+});
 
 
 // make a function to generate a unique queryClient for each test
 export const generateQueryClient = () => {
-    return new QueryClient();
+    const client =  generateQueryClientConfig();
+    const options = client.getDefaultOptions();
+    options.queries = {
+        ...options.queries,
+        retry: false,
+    }
+    return client;
 };
 
 

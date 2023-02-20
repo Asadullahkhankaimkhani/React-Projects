@@ -1,5 +1,6 @@
 import { createStandaloneToast } from '@chakra-ui/react';
 import { MutationCache, QueryCache, QueryClient } from 'react-query';
+import { generateQueryClient } from 'test-utils';
 
 import { theme } from '../theme';
 
@@ -17,20 +18,24 @@ function queryErrorHandler(error: unknown): void {
 
 // to satisfy typescript until this file has uncommented contents
 
-export const queryClient = new QueryClient({
-  queryCache: new QueryCache({
-    onError: queryErrorHandler,
-  }),
-  mutationCache: new MutationCache({
-    onError: queryErrorHandler,
-  }),
-  defaultOptions: {
-    queries: {
-      staleTime: 600000, // 10 minutes
-      cacheTime: 900000, // 15 minutes
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
+export function generateQueryClientConfig(): QueryClient {
+  return new QueryClient({
+    queryCache: new QueryCache({
+      onError: queryErrorHandler,
+    }),
+    mutationCache: new MutationCache({
+      onError: queryErrorHandler,
+    }),
+    defaultOptions: {
+      queries: {
+        staleTime: 600000, // 10 minutes
+        cacheTime: 900000, // 15 minutes
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+      },
     },
-  },
-});
+  });
+}
+
+export const queryClient = generateQueryClientConfig();
