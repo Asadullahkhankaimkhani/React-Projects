@@ -1,6 +1,6 @@
 // This is the reducer function
 
-function reducer(state = [], action) {
+export default function reducer(state = [], action) {
 	switch (action.type) {
 		case "ADD_TASK":
 			return [
