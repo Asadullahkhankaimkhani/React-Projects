@@ -1,5 +1,6 @@
 // This is the reducer function
 
+let id = 0;
 export default function reducer(state = [], action) {
 	switch (action.type) {
 		case "ADD_TASK":
