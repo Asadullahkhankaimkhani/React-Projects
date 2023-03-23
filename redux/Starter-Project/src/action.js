@@ -17,3 +17,12 @@ export const removeTask = (id) => {
 		},
 	};
 };
+
+export const updateTask = (id) => {
+	return {
+		type: actionTypes.UPDATE_TASK,
+		payload: {
+			id,
+		},
+	};
+};
