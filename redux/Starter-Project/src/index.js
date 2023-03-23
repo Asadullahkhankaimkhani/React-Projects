@@ -1,5 +1,5 @@
-import store from "./store";
-import { addTask, removeTask, updateTask } from "./action";
+import store from "./store/storeConfigure";
+import { addTask, removeTask, updateTask } from "./store/task";
 
 store.dispatch(addTask("Learn Redux"));
 console.log(store.getState());
