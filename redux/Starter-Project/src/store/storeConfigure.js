@@ -7,7 +7,7 @@
 // import { devToolsEnhancer } from "redux-devtools-extension";
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-import rootReducer from "./task";
+import rootReducer from "./reducer";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
