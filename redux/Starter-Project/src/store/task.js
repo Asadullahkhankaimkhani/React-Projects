@@ -1,5 +1,5 @@
 // Action Types
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit";
 
 // const ADD_TASK = "ADD_TASK";
 // const REMOVE_TASK = "REMOVE_TASK";
@@ -55,32 +55,52 @@ export const updateTask = createAction("UPDATE_TASK");
 // Reducer
 
 let id = 0;
-export default function reducer(state = [], action) {
-	switch (action.type) {
-		case addTask.type:
-			return [
-				...state,
-				{
-					id: ++id,
-					task: action.payload.task,
-					completed: false,
-				},
-			];
+// export default function reducer(state = [], action) {
+// 	switch (action.type) {
+// 		case addTask.type:
+// 			return [
+// 				...state,
+// 				{
+// 					id: ++id,
+// 					task: action.payload.task,
+// 					completed: false,
+// 				},
+// 			];
 
-		case removeTask.type:
-			return state.filter((task) => task.id !== action.payload.id);
+// 		case removeTask.type:
+// 			return state.filter((task) => task.id !== action.payload.id);
 
-		case updateTask.type:
-			return state.map((task) => {
-				if (task.id === action.payload.id) {
-					return {
-						...task,
-						completed: !task.completed,
-					};
-				}
-				return task;
-			});
-		default:
-			return state;
-	}
-}
+// 		case updateTask.type:
+// 			return state.map((task) => {
+// 				if (task.id === action.payload.id) {
+// 					return {
+// 						...task,
+// 						completed: !task.completed,
+// 					};
+// 				}
+// 				return task;
+// 			});
+// 		default:
+// 			return state;
+// 	}
+// }
+
+// toolkit reducer
+
+export default createReducer([], {
+	[addTask.type]: (state, action) => {
+		state.push({
+			id: ++id,
+			task: action.payload,
+			completed: false,
+		});
+	},
+	[removeTask.type]: (state, action) => {
+		const index = state.findIndex((task) => task.id === action.payload.id);
+		state.splice(index, 1);
+	},
+	[updateTask.type]: (state, action) => {
+		const index = state.findIndex((task) => task.id === action.payload.id);
+		state[index].completed = true;
+	},
+});

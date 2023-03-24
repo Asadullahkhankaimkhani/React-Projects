@@ -12,5 +12,7 @@ store.dispatch(addTask({ task: "Learn Redux" }));
 
 store.dispatch(updateTask({ id: 1 }));
 
+store.dispatch(removeTask({ id: 1 }));
+
 //unsubscribe();
 console.log(store.getState());
