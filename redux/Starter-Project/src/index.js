@@ -1,17 +1,16 @@
 import store from "./store/storeConfigure";
-import { addTask, removeTask, updateTask, fetchTodos } from "./store/task";
+import { addTask, removeTask, updateTask } from "./store/task";
 
-store.dispatch(addTask("Learn Redux"));
+store.dispatch(addTask({ task: "Learn Redux" }));
 console.log(store.getState());
 
-const unsubscribe = store.subscribe(() => {
-	console.log("Updated", store.getState());
-});
+// const unsubscribe = store.subscribe(() => {
+// 	console.log("Updated", store.getState());
+// });
 
-store.dispatch(addTask("Learn React"));
+store.dispatch(addTask({ task: "Learn Redux" }));
 
-store.dispatch(updateTask(1));
+store.dispatch(updateTask({ id: 1 }));
 
-store.dispatch(fetchTodos());
-unsubscribe();
+//unsubscribe();
 console.log(store.getState());
