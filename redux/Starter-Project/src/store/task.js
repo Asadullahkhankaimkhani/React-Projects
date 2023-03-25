@@ -105,32 +105,75 @@
 // 	},
 // });
 
-import { createSlice } from "@reduxjs/toolkit";
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 let id = 0;
+
+export const fetchTask = createAsyncThunk(
+	"task/fetchTask",
+	async (a, { rejectWithValue }) => {
+		try {
+			const response = await axios.get("http://localhost:5000/api/tasks");
+			return {
+				tasks: response.data,
+			};
+		} catch (error) {
+			console.log(error);
+			return rejectWithValue({
+				error: error.message,
+			});
+		}
+	}
+);
+
+const initialState = {
+	tasks: [],
+	error: null,
+	loading: false,
+};
 
 const taskSlice = createSlice({
 	name: "task",
-	initialState: [],
+	initialState,
 	reducers: {
+		getTasks: (state, action) => {
+			return action.payload.tasks;
+		},
 		addTask: (state, action) => {
-			state.push({
+			state.tasks.push({
 				id: ++id,
 				task: action.payload,
 				completed: false,
 			});
 		},
 		removeTask: (state, action) => {
-			const index = state.findIndex((task) => task.id === action.payload.id);
-			state.splice(index, 1);
+			const index = state.tasks.findIndex(
+				(task) => task.id === action.payload.id
+			);
+			state.tasks.splice(index, 1);
 		},
 		updateTask: (state, action) => {
-			const index = state.findIndex((task) => task.id === action.payload.id);
-			state[index].completed = true;
+			const index = state.tasks.findIndex(
+				(task) => task.id === action.payload.id
+			);
+			state.tasks[index].completed = true;
+		},
+	},
+	extraReducers: {
+		[fetchTask.pending]: (state, action) => {
+			state.loading = true;
+		},
+		[fetchTask.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.tasks = action.payload.tasks;
+		},
+		[fetchTask.rejected]: (state, action) => {
+			state.loading = false;
+			state.error = action.error.message;
 		},
 	},
 });
 
-export const { addTask, removeTask, updateTask } = taskSlice.actions;
+export const { addTask, removeTask, updateTask, getTasks } = taskSlice.actions;
 
 export default taskSlice.reducer;
