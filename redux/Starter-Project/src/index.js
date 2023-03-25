@@ -19,3 +19,5 @@ store.dispatch(addEmployee({ name: "John" }));
 
 //unsubscribe();
 console.log(store.getState());
+
+store.dispatch({ type: "SHOW_ERROR", payload: { message: "Error" } });
