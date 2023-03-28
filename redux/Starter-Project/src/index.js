@@ -53,4 +53,14 @@ import axios from "axios";
 
 // getTasksData();
 
-store.dispatch(fetchTask());
+// store.dispatch(fetchTask());
+
+store.dispatch({
+	type: "apiRequest",
+	payload: {
+		url: "/tasks",
+		method: "get",
+		onSuccess: "task/getTasks",
+		onError: "SHOW_ERROR",
+	},
+});
