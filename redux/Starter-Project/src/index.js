@@ -29,6 +29,7 @@ import { addEmployee } from "./store/employee";
 // store.dispatch({ type: "SHOW_ERROR", payload: { message: "Error" } });
 
 import axios from "axios";
+import { apiCallBegan } from "./store/api";
 
 // get all task from server
 
@@ -55,13 +56,11 @@ import axios from "axios";
 
 // store.dispatch(fetchTask());
 
-store.dispatch({
-	type: "apiRequest",
-	payload: {
-		url: "/tasks",
-		onStart: "task/apiRequest",
-		method: "get",
+store.dispatch(
+	apiCallBegan({
+		url: "http://localhost:5000/api/tasks",
 		onSuccess: "task/getTasks",
+		onStart: "task/apiRequest",
 		onError: "task/apiRequestFailed",
-	},
-});
+	})
+);
