@@ -59,8 +59,9 @@ store.dispatch({
 	type: "apiRequest",
 	payload: {
 		url: "/tasks",
+		onStart: "task/apiRequest",
 		method: "get",
 		onSuccess: "task/getTasks",
-		onError: "SHOW_ERROR",
+		onError: "task/apiRequestFailed",
 	},
 });

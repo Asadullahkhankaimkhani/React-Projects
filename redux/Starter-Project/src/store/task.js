@@ -1,6 +1,8 @@
 // // Action Types
 // import { createAction, createReducer } from "@reduxjs/toolkit";
 
+import { createSlice } from "@reduxjs/toolkit";
+
 // // const ADD_TASK = "ADD_TASK";
 // // const REMOVE_TASK = "REMOVE_TASK";
 // // const UPDATE_TASK = "UPDATE_TASK";
@@ -105,27 +107,27 @@
 // 	},
 // });
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "../utils/http";
-let id = 0;
+// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+// import axios from "../utils/http";
+// let id = 0;
 
-// async action creator
-export const fetchTask = createAsyncThunk(
-	"task/fetchTask",
-	async (a, { rejectWithValue }) => {
-		try {
-			const response = await axios.get("/tasks");
-			return {
-				tasks: response.data,
-			};
-		} catch (error) {
-			console.log(error);
-			return rejectWithValue({
-				error: error.message,
-			});
-		}
-	}
-);
+// // async action creator
+// export const fetchTask = createAsyncThunk(
+// 	"task/fetchTask",
+// 	async (a, { rejectWithValue }) => {
+// 		try {
+// 			const response = await axios.get("/tasks");
+// 			return {
+// 				tasks: response.data,
+// 			};
+// 		} catch (error) {
+// 			console.log(error);
+// 			return rejectWithValue({
+// 				error: error.message,
+// 			});
+// 		}
+// 	}
+// );
 
 const initialState = {
 	tasks: [],
@@ -137,8 +139,15 @@ const taskSlice = createSlice({
 	name: "task",
 	initialState,
 	reducers: {
+		apiRequest: (state, action) => {
+			state.loading = true;
+		},
+		apiRequestFailed: (state, action) => {
+			state.loading = false;
+		},
 		getTasks: (state, action) => {
-			return action.payload;
+			state.tasks = action.payload;
+			state.loading = false;
 		},
 		addTask: (state, action) => {
 			state.tasks.push({
@@ -160,19 +169,19 @@ const taskSlice = createSlice({
 			state.tasks[index].completed = true;
 		},
 	},
-	extraReducers: {
-		[fetchTask.pending]: (state, action) => {
-			state.loading = true;
-		},
-		[fetchTask.fulfilled]: (state, action) => {
-			state.loading = false;
-			state.tasks = action.payload.tasks;
-		},
-		[fetchTask.rejected]: (state, action) => {
-			state.loading = false;
-			state.error = action.error.message;
-		},
-	},
+	// extraReducers: {
+	// 	[fetchTask.pending]: (state, action) => {
+	// 		state.loading = true;
+	// 	},
+	// 	[fetchTask.fulfilled]: (state, action) => {
+	// 		state.loading = false;
+	// 		state.tasks = action.payload.tasks;
+	// 	},
+	// 	[fetchTask.rejected]: (state, action) => {
+	// 		state.loading = false;
+	// 		state.error = action.error.message;
+	// 	},
+	// },
 });
 
 export const { addTask, removeTask, updateTask, getTasks } = taskSlice.actions;
