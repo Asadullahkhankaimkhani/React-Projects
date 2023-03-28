@@ -12,7 +12,7 @@ const api =
 		if (onStart) dispatch({ type: onStart });
 		try {
 			const response = await axios.request({
-				baseURL: "http://localhost:5000/apia",
+				baseURL: "http://localhost:5000/api",
 				url,
 				method,
 				data,

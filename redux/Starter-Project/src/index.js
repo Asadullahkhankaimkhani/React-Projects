@@ -5,6 +5,7 @@ import {
 	updateTask,
 	getTasks,
 	fetchTask,
+	loadTasks,
 } from "./store/task";
 import { addEmployee } from "./store/employee";
 
@@ -56,11 +57,4 @@ import { apiCallBegan } from "./store/api";
 
 // store.dispatch(fetchTask());
 
-store.dispatch(
-	apiCallBegan({
-		url: "http://localhost:5000/api/tasks",
-		onSuccess: "task/getTasks",
-		onStart: "task/apiRequest",
-		onError: "task/apiRequestFailed",
-	})
-);
+store.dispatch(loadTasks());

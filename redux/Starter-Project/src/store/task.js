@@ -2,6 +2,7 @@
 // import { createAction, createReducer } from "@reduxjs/toolkit";
 
 import { createSlice } from "@reduxjs/toolkit";
+import { apiCallBegan } from "./api";
 
 // // const ADD_TASK = "ADD_TASK";
 // // const REMOVE_TASK = "REMOVE_TASK";
@@ -184,6 +185,23 @@ const taskSlice = createSlice({
 	// },
 });
 
-export const { addTask, removeTask, updateTask, getTasks } = taskSlice.actions;
+export const {
+	addTask,
+	removeTask,
+	updateTask,
+	getTasks,
+	apiRequest,
+	apiRequestFailed,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;
+
+let url = "/tasks";
+// action creator
+export const loadTasks = () =>
+	apiCallBegan({
+		url,
+		onSuccess: getTasks.type,
+		onStart: apiRequest.type,
+		onError: apiRequestFailed.type,
+	});
