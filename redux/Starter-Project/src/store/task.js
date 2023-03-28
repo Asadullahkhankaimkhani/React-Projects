@@ -106,7 +106,7 @@
 // });
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../utils/http";
 let id = 0;
 
 // async action creator
@@ -114,7 +114,7 @@ export const fetchTask = createAsyncThunk(
 	"task/fetchTask",
 	async (a, { rejectWithValue }) => {
 		try {
-			const response = await axios.get("http://localhost:5000/api/tasks");
+			const response = await axios.get("/tasks");
 			return {
 				tasks: response.data,
 			};
