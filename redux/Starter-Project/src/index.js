@@ -62,15 +62,13 @@ import { apiCallBegan } from "./store/api";
 
 store.dispatch(loadTasks());
 
-// store.dispatch(addNewTask({ task: "Learn Redux" }));
+store.dispatch(addNewTask({ task: "New  Redux" }));
 
-// store.dispatch(deleteTask(3));
+store.dispatch(loadTasks());
 
-store.dispatch(
-	updateTaskStatus({
-		id: 8,
-		completed: true,
-	})
-);
+store.dispatch(updateTaskStatus({ id: 6, completed: true }));
+store.dispatch(loadTasks());
+
+store.dispatch(deleteTask(6));
 
 store.dispatch(loadTasks());
