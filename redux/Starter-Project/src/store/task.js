@@ -57,7 +57,6 @@ import { apiCallBegan } from "./api";
 
 // // Reducer
 
-// let id = 0;
 // // export default function reducer(state = [], action) {
 // // 	switch (action.type) {
 // // 		case addTask.type:
@@ -151,11 +150,7 @@ const taskSlice = createSlice({
 			state.loading = false;
 		},
 		addTask: (state, action) => {
-			state.tasks.push({
-				id: ++id,
-				task: action.payload,
-				completed: false,
-			});
+			state.tasks.push(action.payload);
 		},
 		removeTask: (state, action) => {
 			const index = state.tasks.findIndex(
@@ -167,7 +162,7 @@ const taskSlice = createSlice({
 			const index = state.tasks.findIndex(
 				(task) => task.id === action.payload.id
 			);
-			state.tasks[index].completed = true;
+			state.tasks[index].completed = action.payload.completed;
 		},
 	},
 	// extraReducers: {
@@ -204,4 +199,31 @@ export const loadTasks = () =>
 		onSuccess: getTasks.type,
 		onStart: apiRequest.type,
 		onError: apiRequestFailed.type,
+	});
+
+export const addNewTask = (task) =>
+	apiCallBegan({
+		url,
+		method: "post",
+		data: task,
+		onSuccess: addTask.type,
+		onStart: apiRequest.type,
+		onError: apiRequestFailed.type,
+	});
+
+export const deleteTask = (id) =>
+	apiCallBegan({
+		url: `${url}/${id}`,
+		method: "delete",
+		onSuccess: removeTask.type,
+		onStart: apiRequest.type,
+		onError: apiRequestFailed.type,
+	});
+
+export const updateTaskStatus = (task) =>
+	apiCallBegan({
+		url: `${url}/${task.id}`,
+		method: "patch",
+		data: task,
+		onSuccess: updateTask.type,
 	});

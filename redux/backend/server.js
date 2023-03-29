@@ -33,6 +33,7 @@ app.patch("/api/tasks/:id", (req, res) => {
 	const index = tasks.findIndex((task) => task.id === id);
 	const task = tasks[index];
 	task.completed = req.body.completed;
+	console.log(task);
 	res.json(task);
 });
 

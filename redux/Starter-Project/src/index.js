@@ -6,6 +6,9 @@ import {
 	getTasks,
 	fetchTask,
 	loadTasks,
+	addNewTask,
+	deleteTask,
+	updateTaskStatus,
 } from "./store/task";
 import { addEmployee } from "./store/employee";
 
@@ -56,5 +59,18 @@ import { apiCallBegan } from "./store/api";
 // getTasksData();
 
 // store.dispatch(fetchTask());
+
+store.dispatch(loadTasks());
+
+// store.dispatch(addNewTask({ task: "Learn Redux" }));
+
+// store.dispatch(deleteTask(3));
+
+store.dispatch(
+	updateTaskStatus({
+		id: 8,
+		completed: true,
+	})
+);
 
 store.dispatch(loadTasks());
