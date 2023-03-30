@@ -1,7 +1,13 @@
+import AddTask from "./components/AddTask";
 import Task from "./components/Task";
 
 function App() {
-	return <Task />;
+	return (
+		<>
+			<AddTask />
+			<Task />
+		</>
+	);
 }
 
 export default App;
