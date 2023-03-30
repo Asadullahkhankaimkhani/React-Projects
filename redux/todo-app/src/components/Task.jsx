@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { loadTasks } from "../store/task";
 
 function Task() {
-	const [tasks, setTasks] = useState([]);
+	const dispatch = useDispatch();
+
+	const { tasks, loading } = useSelector((state) => state.task);
 
 	useEffect(() => {
-		store.dispatch(loadTasks());
+		dispatch(loadTasks());
 	}, []);
 
 	return (
 		<div>
-			<h1>
-				{tasks.map((task) => (
-					<li key={task.id}>{task.task}</li>
-				))}
-			</h1>
+			{loading ? (
+				<h1>Loading...</h1>
+			) : (
+				<ul>
+					{tasks.map((task) => (
+						<li key={task.id}>{task.task}</li>
+					))}
+				</ul>
+			)}
 		</div>
 	);
 }
