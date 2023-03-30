@@ -1,13 +1,7 @@
-import Task from "../components/Task";
-import store from "./store/storeConfigure";
-import { StoreContext } from "./context/storeContext";
+import Task from "./components/Task";
 
 function App() {
-	return (
-		<StoreContext.Provider value={store}>
-			<Task />
-		</StoreContext.Provider>
-	);
+	return <Task />;
 }
 
 export default App;
