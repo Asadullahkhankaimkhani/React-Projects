@@ -8,4 +8,4 @@
 
 ### 4. Redux Tool Kit
 
-### 5. Open Table Clone (Next.js)
+### 5. Open Table Clone (Next.js) Typescript
