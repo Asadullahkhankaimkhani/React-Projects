@@ -7,18 +7,18 @@ const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
   return (
     <>
-      <div className='max-w-screen-2xl m-auto bg-white'>
+      <div className='m-auto bg-white max-w-screen-2xl'>
         {/* Navbar */}
-        <nav className='bg-white p-2 flex justify-between'>
-          <a href='#' className='font-bold text-gray-700 text-2xl'>
+        <nav className='flex justify-between p-2 bg-white'>
+          <a href='#' className='text-2xl font-bold text-gray-700'>
             OpenTable
           </a>
           <div>
             <div className='flex space-x-2'>
-              <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold p-1  px-4 rounded'>
+              <button className='p-1 px-4 font-bold text-white rounded bg-emerald-800 hover:bg-emerald-700'>
                 Sign In
               </button>
-              <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold p-1 px-4 border border-gray-400 rounded shadow'>
+              <button className='p-1 px-4 font-semibold text-gray-800 bg-white border border-gray-400 rounded shadow hover:bg-gray-100'>
                 Sign Up
               </button>
             </div>
@@ -29,10 +29,20 @@ export default function Home() {
 
         <div>
           <div className='h-64 bg-gradient-to-r from-[#0f1f47] to-[#5f6984] p-2'>
-            <div className='text-center mt-10'>
-              <h1 className='text-5xl font-bold text-white mb-2'>
+            <div className='mt-10 text-center'>
+              <h1 className='mb-2 text-5xl font-bold text-white'>
                 Find the best restaurants, cafés, and bars
               </h1>
+            </div>
+            <div className='flex justify-center py-3 m-auto text-lg text-left'>
+              <input
+                type='text'
+                className='rounded  mr-3 p-2 w-[450px]'
+                placeholder='State, city or town'
+              />
+              <button className='p-2 px-4 font-semibold text-white bg-red-600 rounded hover:bg-red-500'>
+                Let's Go
+              </button>
             </div>
           </div>
         </div>
