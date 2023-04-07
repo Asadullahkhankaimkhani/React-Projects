@@ -1,0 +1,82 @@
+<div className="m-auto bg-white max-w-screen-2xl">
+  {/* Navbar */}
+  <nav className="flex justify-between p-2 bg-white">
+    <a href="#" className="text-2xl font-bold text-gray-700"> OpenTable </a>
+    <div>
+      <div className="flex space-x-2">
+        <button
+          className="p-1 px-4 font-bold text-white rounded bg-emerald-800 hover:bg-emerald-700"
+        >
+          Sign In
+        </button>
+        <button
+          className="p-1 px-4 font-semibold text-gray-800 bg-white border border-gray-400 rounded shadow hover:bg-gray-100"
+        >
+          Sign Up
+        </button>
+      </div>
+    </div>
+  </nav>
+  {/* end Navbar */} {/* Header */}
+  <div>
+    <div className="h-64 bg-gradient-to-r from-[#0f1f47] to-[#5f6984] p-2">
+      <div className="mt-10 text-center">
+        <h1 className="mb-2 text-5xl font-bold text-white">
+          Find the best restaurants, cafés, and bars
+        </h1>
+      </div>
+      <div className="flex justify-center py-3 m-auto text-lg text-left">
+        <input
+          type="text"
+          className="rounded  mr-3 p-2 w-[450px]"
+          placeholder="State, city or town"
+        />
+        <button
+          className="p-2 px-4 font-semibold text-white bg-red-600 rounded hover:bg-red-500"
+        >
+          Let's Go
+        </button>
+      </div>
+    </div>
+  </div>
+  {/* End Header */} {/* Cards */} {/* Card */}
+  <div className="flex flex-wrap py-3 mt-10 px-36">
+    <div
+      className="w-64 m-3 overflow-hidden border rounded cursor-pointer h-72"
+    >
+      <img
+        src="https://resizer.otstatic.com/v2/photos/wide-medium/3/50323255.jpg"
+        alt=""
+        className="w-full h-36"
+      />
+      <div className="p-1">
+        <h3 className="mb-2 text-2xl font-bold">Michael's Genuine</h3>
+        <div className="flex items-start">
+          <div className="flex mb-2">
+            {/* star icons */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 text-yellow-600"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 2a1 1 0 01.894.553l2.447 4.895 5.332.777a1 1 0 01.553 1.684l-3.83 3.763.896 5.306a1 1 0 01-1.447 1.105L10 16.334l-4.553 2.39a1 1 0 01-1.447-1.105l.896-5.306-3.83-3.763a1 1 0 01.553-1.684l5.332-.777 2.447-4.895A1 1 0 0110 2z"
+                clipRule="evenodd"
+              />
+              {/* end star icons */}
+            </svg>
+          </div>
+        </div>
+        <div className="flex font-light text-gray-500 capitalize text-reg">
+          <p className="mr-3 ">Mexican</p>
+          <p className="mr-3">$$ - $$$</p>
+          <p className="mr-3">Miami</p>
+        </div>
+        <p className="mt-2 text-sm font-bold">Booked 3 times today</p>
+      </div>
+    </div>
+    {/* End Card */}
+  </div>
+</div>
