@@ -60,7 +60,7 @@ function page() {
                 </div>
               </div>
             </main>
-            {/* MENU */}
+            {/* End MENU */}
           </div>
         </div>
         {/* DESCRIPTION PORTION */}
