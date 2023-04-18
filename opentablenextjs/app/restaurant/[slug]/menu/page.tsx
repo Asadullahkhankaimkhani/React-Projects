@@ -1,5 +1,5 @@
 import React from 'react';
-
+// Menu Page
 function page() {
   return (
     <main className='w-screen min-h-screen bg-gray-100'>
